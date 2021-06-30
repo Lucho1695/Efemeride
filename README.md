@@ -5,21 +5,17 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.7.1
 
-* System dependencies
+* Rails 6
 
-* Configuration
+* Webpacker
 
-* Database creation
+* Base de datos Mysql
 
-* Database initialization
+* Para iniciar el servidor debe instalar las gemas y ejecutar yarn install
+* bundle install && yarn install
 
-* How to run the test suite
+* rails db:create && rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # Efemeride
