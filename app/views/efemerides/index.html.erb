@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-header py-3 bg-primary text-white">
+    <div class="row">
+      <div class="col-md-4">
+        <h3><%= "#{controller.controller_name.humanize}" %><small class="text-white"> <%= controller.action_name %></small>
+        </h3>
+      </div>
+      <div class="col-md-8 text-center">
+          <%= link_to url_for({controller: controller.controller_name, action: :new}), class: 'text-white btn btn-success', id: 'new_button' do%>
+            <i class="fas fa-plus"></i> <%= "New #{controller.controller_name}" %>
+          <% end %>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group" id="users_counter">
+            Total: <%=h eval("@#{controller.controller_name}").count if !eval("@#{controller.controller_name}").nil?%> / <%= eval("#{controller.controller_name.singularize.camelcase}").count %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <p id="notice"><%= notice %></p>
+
+    <h1>Efemerides</h1>
+
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Text</th>
+          <th>Image</th>
+          <th>Date</th>
+          <th>Category</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @efemerides.each do |efemeride| %>
+        <tr>
+          <td>
+            <%= efemeride.text.first(25) + "..." %>
+          </td>
+          <td>
+            <%= image_tag show_small_image_efemeride_path(efemeride), class: "navButton text-white",
+            style: "width: 25%; heigth: 25%", id: "#{efemeride.id}"
+            %>
+          </td>
+          <td>
+            <%= efemeride.date %>
+          </td>
+          <td>
+            <%= Category.find(efemeride.category_id).name %>
+          </td>
+          <td><%= link_to 'Show', efemeride, class: "text-white btn btn-info" %></td>
+          <td><%= link_to 'Edit', edit_efemeride_path(efemeride), class: "text-white btn btn-warning" %></td>
+          <td><%= link_to 'Eliminar', efemeride, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-white btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+  </div>
+</div>

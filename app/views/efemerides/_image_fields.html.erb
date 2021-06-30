@@ -1,0 +1,12 @@
+<div class="col-md-12">
+  <div class="nested-fields">
+    <div class="card-body">
+      <% if f.object.is_image? %>
+        <%= image_tag show_small_image_efemeride_path(f.object), style: "max-width: 120px; max-height: 120px" %><br/>
+          <b>Nombre del archivo</b> <%= link_to f.object.filename, show_small_image_efemeride_path(f.object), class: "file_name", :profile => "_blank" %>
+      <% end %>
+        <br>
+      <%= f.file_field :image_file %>
+    </div>
+  </div>
+</div>

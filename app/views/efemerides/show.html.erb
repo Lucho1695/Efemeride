@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    Efemeride
+    <div class="col-md-12 row">
+      <%= link_to 'Edit', edit_efemeride_path(@efemeride), class: "btn btn-info text-white col-md-3" %> |
+      <%= link_to 'Back', efemerides_path, class: 'btn btn-warning text-white col-md-3' %>
+
+    </div>
+  </div>
+<p id="notice"><%= notice %></p>
+
+<div class="card-body">
+  <div class="col-md-12 row">
+    <div class="col-md-6 text-right">  <strong>Text:</strong>
+      <%= @efemeride.text %>
+    </div>
+    <div class="col-md-6">
+  <strong>Date:</strong>
+  <%= @efemeride.date %>
+</div>
+</div>
+
+<div class="col-md-12 row">
+  <div class="col-md-6 text-right">
+    <strong>Image</strong>
+  </div>
+
+  <%= image_tag show_small_image_efemeride_path(@efemeride), class: "navButton text-white",
+  style: "width: 25%; heigth: 25%", id: "#{@efemeride.id}"
+  %>
+</div>
+
+<div class="col-md-12 row">
+
+  <strong>Category:</strong>
+  <%= Category.find(@efemeride.category_id).name %>
+</div>

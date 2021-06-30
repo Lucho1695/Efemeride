@@ -1,0 +1,58 @@
+<%= form_with(model: efemeride) do |form| %>
+  <% if efemeride.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(efemeride.errors.count, "error") %> prohibited this efemeride from being saved:</h2>
+
+      <ul>
+        <% efemeride.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-md-12 row">
+
+      <%= form.label :text, class:'col-md-2' %>
+      <div class="col-md-4">
+      <%= form.text_field :text %>
+    </div>
+      <%= form.label :date, class:'col-md-2' %>
+      <div class="col-md-4">
+      <%= form.text_field :date, class:"datetimepicker"%>
+    </div>
+  </div>
+
+  <div class="col-md-12 row">
+    <b class="col-md-12"><h4><%= form.label "Imagen Principal" %></h4></b>
+    <div class="col-md-12">
+      <div class="card-deck row bg-outline-info">
+        <div class="col-md-12 row" id="image_body">
+          <%= form.fields_for :image_files do | image | %>
+            <%= render 'image_fields', {form: image, f: image} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% if @efemeride.image_files.empty? %>
+      <div class="card-footer text-center">
+        <%= link_to_add_association( form, :image_files, data: {"association-insertion-node" => "#image_body", "association-insertion-method" => "after" }, partial: "image_fields" ) do %>
+          <button type='button' class='btn btn-success'><span class='fas fa-plus'></span>Agregar Button</button>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-12 row">
+    <label class="col-sm-2"">Category</label>
+    <div class="col-md-4">
+      <%= form.collection_select :category_id, Category.where(active: true),
+      :id, :name, { selected: @efemeride.category_id },
+      class: "form-control" %>
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

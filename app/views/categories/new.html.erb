@@ -1,0 +1,13 @@
+<div class="card bg-light">
+  <div class="col-md-12 row">
+    <div class="col-md-6">
+      <h1>New Category</h1>
+    </div>
+    <div class="col-md-6 text-center">
+      <%= link_to 'Back', categories_path, class: 'btn btn-info text-white' %>
+    </div>
+    <div class="card-body">
+      <%= render 'form', category: @category %>
+    </div>
+  </div>
+</div>
